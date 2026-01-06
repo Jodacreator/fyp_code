@@ -1,7 +1,6 @@
 from otree.api import *
 import random
 
-
 doc = """
 Network Information & Cooperation:
 - Fixed hidden state (HIGH/LOW) across rounds
@@ -115,15 +114,18 @@ class Player(BasePlayer):
     def signals_observed_this_round(self):
         """
         Returns a list of dicts: [{'source': <label>, 'signal': 'HIGH'/'LOW'}, ...]
-        This implements the mechanical sharing rule in your design.
 
         HUB treatment:
           - Hub observes ALL players' signals (including own)
-          - Spokes observe: own signal + hub's "broadcast" of all SPOKES' raw signals (no beliefs)
-            (i.e., hub as aggregator, but cannot manipulate)
+          - Spokes observe ONLY:
+              • their own private signal
+              • the hub's signal
 
         RING treatment:
-          - Each player observes: own signal + left neighbor signal + right neighbor signal
+          - Each player observes:
+              • own signal
+              • left neighbor signal
+              • right neighbor signal
         """
         g = self.group
         r = self.round_number
@@ -134,30 +136,24 @@ class Player(BasePlayer):
         me = self.in_round(r)
         observed.append({'source': 'You', 'signal': me.signal})
 
+        # Ring network: see 2 neighbors
         if g.network_type == 'ring':
             for nb in self.ring_neighbors():
                 nb_r = nb.in_round(r)
                 observed.append({'source': f'Neighbor {nb_r.id_in_group}', 'signal': nb_r.signal})
             return observed
 
-        # hub network
+        # Hub-and-spoke network
         hub = g.hub_player().in_round(r)
 
         if self.is_hub():
-            # Hub sees everyone
+            # Hub sees everyone else
             for p in g.get_players():
                 pr = p.in_round(r)
                 if pr.id_in_group != self.id_in_group:
                     observed.append({'source': f'Player {pr.id_in_group}', 'signal': pr.signal})
             return observed
 
-        # Spoke: observe own signal + hub broadcast of all SPOKES' signals (raw)
-        # This matches: spokes do not see each other directly, only via hub broadcast.
-        # The broadcast is mechanical, so no manipulation.
+        # Spoke: sees hub only (no other spokes)
         observed.append({'source': 'Hub', 'signal': hub.signal})
-        for p in g.get_players():
-            pr = p.in_round(r)
-            if pr.id_in_group != 1 and pr.id_in_group != self.id_in_group:
-                observed.append({'source': f'Spoke {pr.id_in_group}', 'signal': pr.signal})
-
         return observed
