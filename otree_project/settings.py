@@ -2,13 +2,20 @@ from os import environ
 
 SESSION_CONFIGS = [
     dict(
-        name='network_info_coop',
-        display_name="Network Information & Cooperation (FYP)",
+        name='network_info_coop_ring',
+        display_name="Network Information & Cooperation (FYP) — Ring",
         num_demo_participants=8,
         app_sequence=['network_info_coop'],
+        network_type='ring',
+    ),
+    dict(
+        name='network_info_coop_hub',
+        display_name="Network Information & Cooperation (FYP) — Hub-and-Spoke",
+        num_demo_participants=8,
+        app_sequence=['network_info_coop'],
+        network_type='hub',
     ),
 ]
-
 
 # if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs
 # in SESSION_CONFIGS, except those that explicitly override it.
