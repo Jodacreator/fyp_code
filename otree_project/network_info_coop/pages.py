@@ -47,11 +47,8 @@ class Decide(Page):
 
 
 class ResultsWaitPage(WaitPage):
-    after_all_players_arrive = 'after_all'
+    after_all_players_arrive = 'compute_payoffs'
 
-    @staticmethod
-    def after_all(group):
-        group.compute_payoffs()
 
 
 class Results(Page):
