@@ -60,8 +60,8 @@ Each round, payoffs are computed as:
 
 where:
 
-* (\alpha) is the Marginal Per Capita Return (MPCR),
-* (\alpha) depends on an unobserved state of the world.
+* alpha is the Marginal Per Capita Return (MPCR),
+* alpha depends on an unobserved state of the world.
 
 ---
 
