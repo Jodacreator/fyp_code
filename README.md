@@ -55,10 +55,8 @@ These principles ensure clean identification of network effects.
 ### Payoff Function
 
 Each round, payoffs are computed as:
+<img width="675" height="76" alt="image" src="https://github.com/user-attachments/assets/dfcf5c56-b6cc-4e30-8277-32138693ee43" />
 
-[
-\pi_i = \text{Endowment} - \text{Contribution}_i + \alpha \cdot \sum_j \text{Contribution}_j
-]
 
 where:
 
