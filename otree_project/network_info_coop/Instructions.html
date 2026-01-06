@@ -1,0 +1,23 @@
+{% extends "global/Page.html" %}
+{% block content %}
+
+<h3>Instructions</h3>
+
+<p>You are in a group of {{ n }} players for {{ num_rounds }} rounds.</p>
+
+<p>At the start, a hidden state is randomly chosen (HIGH or LOW) and remains fixed throughout.</p>
+
+<p>Each round, you receive a private signal about the state. Signals are noisy (accuracy {{ signal_accuracy }}).</p>
+
+<p><b>Network type:</b> {{ network_type }}</p>
+
+<ul>
+  <li><b>Ring:</b> you observe your neighbors’ signals (left and right).</li>
+  <li><b>Hub:</b> Player 1 is the hub. Signals are shared mechanically via the network rules.</li>
+</ul>
+
+<p>You will then decide whether to contribute to a group project and report your belief (0–100). Beliefs do not affect payoffs.</p>
+
+<button class="btn btn-primary">Continue</button>
+
+{% endblock %}

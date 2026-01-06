@@ -1,0 +1,27 @@
+{% extends "global/Page.html" %}
+{% block content %}
+
+<h3>Round {{ round_number }}: Signals</h3>
+
+<p><b>Network type:</b> {{ network_type }}</p>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Source</th>
+      <th>Signal</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in observed_signals %}
+      <tr>
+        <td>{{ item.source }}</td>
+        <td><b>{{ item.signal }}</b></td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<button class="btn btn-primary">Continue</button>
+
+{% endblock %}
