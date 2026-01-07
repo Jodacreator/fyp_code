@@ -32,6 +32,7 @@ class ObserveSignals(Page):
         return dict(
             network_type=self.group.network_type,
             observed_signals=observed,
+            is_hub=p.is_hub(),  # IMPORTANT: required by ObserveSignals.html
         )
 
 
@@ -48,7 +49,6 @@ class Decide(Page):
 
 class ResultsWaitPage(WaitPage):
     after_all_players_arrive = 'compute_payoffs'
-
 
 
 class Results(Page):
