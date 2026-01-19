@@ -3,6 +3,13 @@
 
 <h3>Instructions</h3>
 
+<h5>Study Background</h5>
+<p>
+This study explores how different network structures affect cooperation in group decision-making. In many real-world systems—such as financial markets, organizations, and supply chains—people are connected in ways that influence how information flows and how cooperation emerges. By participating, you help us understand how network position impacts group outcomes.
+</p>
+
+<hr>
+
 <p>You are in a group of <b>{{ n }}</b> players for <b>{{ num_rounds }}</b> rounds.</p>
 
 <hr>
@@ -23,10 +30,8 @@
 <h5>2) Network structure (who you observe)</h5>
 <p>
   <b>Network structure:</b>
-  {% if network_type == 'hub' %}
-    Hub-and-Spoke (centralised information)
-  {% else %}
-    Ring (decentralised information)
+  {% if network_type == 'hub' %} Hub-and-Spoke (centralised information)
+  {% else %} Ring (decentralised information)
   {% endif %}
 </p>
 
